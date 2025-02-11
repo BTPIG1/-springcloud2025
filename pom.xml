@@ -13,7 +13,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>services</module>
-	</modules>
+        <module>model</module>
+    </modules>
 
 	<groupId>com.atguigu</groupId>
 	<artifactId>cloud-demo</artifactId>

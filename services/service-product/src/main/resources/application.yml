@@ -1,0 +1,51 @@
+server:
+  port: 8000
+
+spring:
+  profiles:
+    active: dev # 指定激活环境
+  application:
+    name: service-product
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        namespace: ${spring.profiles.active:public} # Nacos 命名空间 :public是无激活则默认public意思
+
+# 这里存在一个小问题：如果不同的环境可能导入的nacos配置文件不同，因此需要实现动态导入
+#  config:
+#    import:
+#      - nacos:common.properties?group=product # nacos: {dataId}?group={group} 区分微服务与数据集
+#      - nacos:database.properties?group=product
+
+# 日志
+logging:
+  level:
+    com.atguigu.order.feign: debug
+
+---
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=product # nacos: {dataId}?group={group} 区分微服务与数据集
+      - nacos:database.properties?group=product
+    activate:
+      on-profile: dev
+
+---
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=product # nacos: {dataId}?group={group} 区分微服务与数据集
+      - nacos:database.properties?group=product
+    activate:
+      on-profile: test
+
+---
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=product # nacos: {dataId}?group={group} 区分微服务与数据集
+      - nacos:database.properties?group=product
+    activate:
+      on-profile: prod

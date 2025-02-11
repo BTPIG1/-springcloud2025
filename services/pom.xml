@@ -25,6 +25,12 @@
 
 <!--    每个微服务都要用到nacos、openfenign、-->
         <dependencies>
+<!--            依赖model模块里的公共类-->
+            <dependency>
+                <groupId>com.atguigu</groupId>
+                <artifactId>model</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
 <!--            nacos：服务发现-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
@@ -35,6 +41,17 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <scope>annotationProcessor</scope>
+            </dependency>
+<!--            导入nacos配置中心依赖-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+            </dependency>
+
         </dependencies>
 
 </project>
